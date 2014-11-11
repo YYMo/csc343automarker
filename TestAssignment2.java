@@ -573,7 +573,7 @@ class TestAssignment2
                     count++;
                 }
             }
-            if (resultNum == 6) {
+            if (result && resultNum == 6) {
                 case_marks+=2;
             }
             if (count==6) {
