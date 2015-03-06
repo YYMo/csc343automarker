@@ -1,4 +1,4 @@
---SET search_path TO A2;
+SET search_path TO A2;
 --country
 INSERT INTO country VALUES(156, 'China', 8850, 1303934000);
 INSERT INTO country VALUES(250, 'France', 4808, 66050000);

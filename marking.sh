@@ -13,7 +13,7 @@
 ########Test a single student###########
 #CHANGED by t1hussai
 #CHANGED by t1wongka
-students=`ls A2` #`ls A2` #$1  #a single student
+students=`ls A2_late` #`ls A2` #$1  #a single student
 
 a2results=a2.results 
 current=`pwd` #current working path
@@ -25,7 +25,8 @@ database=a2test
 username=ta
 
 total=0
-
+sqln=0
+jdbcn=0
 ##student list in current working path
 list=studentList 
 
@@ -33,7 +34,7 @@ rm $list
 touch $list
 
 ##the directory containing all test results
-allresultsPath=a2-allresults
+allresultsPath=a2-allresults_late
 
 ##test the existence of the directory
 if [ ! -d $allresultsPath ]
@@ -45,8 +46,8 @@ fi
 for name in $students
 do
     echo $name
-    path=$current/A2/$name/A2/
-    results=$current/A2/$name/A2/result
+    path=$current/A2_late/$name/
+    results=$current/A2_late/$name/result
     if [ -d $path ]
     then
         echo "find path"
@@ -78,11 +79,13 @@ do
             echo "Unable to find Assignment2.java ... " >>$results
             else
             echo "Assignment2.java exists.">>$results
+            jdbcn=`expr $jdbcn + 1`
         fi
         if [ ! -f a2.sql ]; then
             echo "Unable to find a2.sql ... ">>$results
             else
             echo "a2.sql exists.">>$results
+            sqln=`expr $sqln + 1`
         fi
         echo >> $results
 
@@ -108,9 +111,11 @@ do
 
         echo "********Run a2.sql*********">>$results
         echo "********Run a2sql*********"
-        psql -U $username -d $database -f a2.sql
+        sed '1 i\ SET search_path TO A2;' a2.sql > $current/temp.sql
+        psql -U $username -d $database -f $current/temp.sql
         echo "=============================================">>$results
         echo >>$results
+        rm -f $current/temp.sql
 #       cp $results $current/$allresultsPath/$results.part1
 #       exit
 
@@ -123,18 +128,18 @@ do
         echo "         TESTING FOR QUERY1        ">>$results
         echo "-----------------------------------">>$results
         echo "******** YOUR RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query1;" >> .table.your 2>&1
+            psql -U $username -d $database -c "select * from a2.Query1;" >> .table.your 2>&1
         #trap handle1 ERR
         less .table.your >> $results
         echo >>$results
         echo "******** EXPECTED RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query1Ans;" >> .table.expected 2>&1
+            psql -U $username -d $database -c "select * from a2.Query1Ans;" >> .table.expected 2>&1
         less .table.expected >> $results
         if [ -z `diff -q .table.your .table.expected` ]; then
-            echo "Mark:     5/5">>$results
+            echo "QUERY1 Mark:     5/5">>$results
         else
             #echo `diff .table.your .table.expected` >> $results
-            echo "Mark:     /5">>$results
+            echo "QUERY1 Mark:     /5">>$results
         fi
         rm -f .table.your .table.expected 
             echo "=============================================">>$results
@@ -145,19 +150,19 @@ do
         echo "         TESTING FOR QUERY2        ">>$results
         echo "-----------------------------------">>$results
         echo "******** YOUR RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query2;" >>.table.your 2>&1
+            psql -U $username -d $database -c "select * from a2.Query2;" >>.table.your 2>&1
         echo >>$results
         #trap handle2 ERR
         less .table.your >> $results
         echo >>$results
         echo "******** EXPECTED RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query2Ans;" >>.table.expected 2>&1
+            psql -U $username -d $database -c "select * from a2.Query2Ans;" >>.table.expected 2>&1
         less .table.expected >> $results
         if [ -z `diff -q .table.your .table.expected` ]; then
-            echo "Mark:     5/5">>$results
+            echo "QUERY2 Mark:     5/5">>$results
         else
             #echo `diff .table.your .table.expected` >> $results
-            echo "Mark:     /5">>$results
+            echo "QUERY2 Mark:     /5">>$results
         fi
         rm -f .table.your .table.expected 
             echo "=============================================">>$results
@@ -170,19 +175,19 @@ do
         echo "         TESTING FOR QUERY3        ">>$results
         echo "-----------------------------------">>$results
         echo "******** YOUR RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query3;" >>.table.your 2>&1
+            psql -U $username -d $database -c "select * from a2.Query3;" >>.table.your 2>&1
         echo >>$results
         #trap handle3 ERR
         less .table.your >> $results
         echo >>$results
         echo "******** EXPECTED RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query3Ans;" >>.table.expected 2>&1
+            psql -U $username -d $database -c "select * from a2.Query3Ans;" >>.table.expected 2>&1
         less .table.expected >> $results
         if [ -z `diff -q .table.your .table.expected` ]; then
-            echo "Mark:     5/5">>$results
+            echo "QUERY3 Mark:     5/5">>$results
         else
             #echo `diff .table.your .table.expected` >> $results
-            echo "Mark:     /5">>$results
+            echo "QUERY3 Mark:     /5">>$results
         fi
         rm -f .table.your .table.expected 
             echo "=============================================">>$results
@@ -195,19 +200,19 @@ do
         echo "         TESTING FOR QUERY4        ">>$results
         echo "-----------------------------------">>$results
         echo "******** YOUR RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query4;" >>.table.your 2>&1
+            psql -U $username -d $database -c "select * from a2.Query4;" >>.table.your 2>&1
         echo >>$results
         #trap handle4 ERR
         less .table.your >> $results
         echo >>$results
         echo "******** EXPECTED RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query4Ans;" >>.table.expected 2>&1
+            psql -U $username -d $database -c "select * from a2.Query4Ans;" >>.table.expected 2>&1
         less .table.expected >> $results
         if [ -z `diff -q .table.your .table.expected` ]; then
-            echo "Mark:     5/5">>$results
+            echo "QUERY4 Mark:     5/5">>$results
         else
             #echo `diff .table.your .table.expected` >> $results
-            echo "Mark:     /5">>$results
+            echo "QUERY4 Mark:     /5">>$results
         fi
         rm -f .table.your .table.expected 
             echo "=============================================">>$results
@@ -220,19 +225,19 @@ do
         echo "         TESTING FOR QUERY5        ">>$results
         echo "-----------------------------------">>$results
         echo "******** YOUR RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query5;" >>.table.your 2>&1
+            psql -U $username -d $database -c "select * from a2.Query5;" >>.table.your 2>&1
         echo >>$results
         #trap handle5 ERR
         less .table.your >> $results
         echo >>$results
         echo "******** EXPECTED RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query5Ans;" >>.table.expected 2>&1
+            psql -U $username -d $database -c "select * from a2.Query5Ans;" >>.table.expected 2>&1
         less .table.expected >> $results
         if [ -z `diff -q .table.your .table.expected` ]; then
-            echo "Mark:     5/5">>$results
+            echo "QUERY5 Mark:     5/5">>$results
         else
             #echo `diff .table.your .table.expected` >> $results
-            echo "Mark:     /5">>$results
+            echo "QUERY5 Mark:     /5">>$results
         fi
         rm -f .table.your .table.expected 
             echo "=============================================">>$results
@@ -245,19 +250,19 @@ do
         echo "         TESTING FOR QUERY6        ">>$results
         echo "-----------------------------------">>$results
         echo "******** YOUR RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query6;" >>.table.your 2>&1
+            psql -U $username -d $database -c "select * from a2.Query6;" >>.table.your 2>&1
         echo >>$results
         #trap handle6 ERR
         less .table.your >> $results
         echo >>$results
         echo "******** EXPECTED RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query6Ans;" >>.table.expected 2>&1
+            psql -U $username -d $database -c "select * from a2.Query6Ans;" >>.table.expected 2>&1
         less .table.expected >> $results
         if [ -z `diff -q .table.your .table.expected` ]; then
-            echo "Mark:     5/5">>$results
+            echo "QUERY6 Mark:     5/5">>$results
         else
             #echo `diff .table.your .table.expected` >> $results
-            echo "Mark:     /5">>$results
+            echo "QUERY6 Mark:     /5">>$results
         fi
         rm -f .table.your .table.expected 
             echo "=============================================">>$results
@@ -270,19 +275,19 @@ do
         echo "         TESTING FOR QUERY7        ">>$results
         echo "-----------------------------------">>$results
         echo "******** YOUR RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query7;" >>.table.your 2>&1
+            psql -U $username -d $database -c "select * from a2.Query7;" >>.table.your 2>&1
         echo >>$results
         #trap handle7 ERR
         less .table.your >> $results
         echo >>$results
         echo "******** EXPECTED RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query7Ans;" >>.table.expected 2>&1
+            psql -U $username -d $database -c "select * from a2.Query7Ans;" >>.table.expected 2>&1
         less .table.expected >> $results
         if [ -z `diff -q .table.your .table.expected` ]; then
-            echo "Mark:     5/5">>$results
+            echo "QUERY7 Mark:     5/5">>$results
         else
             #echo `diff .table.your .table.expected` >> $results
-            echo "Mark:     /5">>$results
+            echo "QUERY7 Mark:     /5">>$results
         fi
         rm -f .table.your .table.expected 
             echo "=============================================">>$results
@@ -296,19 +301,19 @@ do
         echo "         TESTING FOR QUERY8        ">>$results
         echo "-----------------------------------">>$results
         echo "******** YOUR RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query8;" >>.table.your 2>&1
+            psql -U $username -d $database -c "select * from a2.Query8;" >>.table.your 2>&1
         echo >>$results
         #trap handle7 ERR
         less .table.your >> $results
         echo >>$results
         echo "******** EXPECTED RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query8Ans;" >>.table.expected 2>&1
+            psql -U $username -d $database -c "select * from a2.Query8Ans;" >>.table.expected 2>&1
         less .table.expected >> $results
         if [ -z `diff -q .table.your .table.expected` ]; then
-            echo "Mark:     5/5">>$results
+            echo "QUERY8 Mark:     5/5">>$results
         else
             #echo `diff .table.your .table.expected` >> $results
-            echo "Mark:     /5">>$results
+            echo "QUERY8 Mark:     /5">>$results
         fi
         rm -f .table.your .table.expected 
             echo "=============================================">>$results
@@ -323,19 +328,19 @@ do
         echo "         TESTING FOR QUERY9        ">>$results
         echo "-----------------------------------">>$results
         echo "******** YOUR RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query9;" >>.table.your 2>&1
+            psql -U $username -d $database -c "select * from a2.Query9;" >>.table.your 2>&1
         echo >>$results
         #trap handle7 ERR
         less .table.your >> $results
         echo >>$results
         echo "******** EXPECTED RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query9Ans;" >>.table.expected 2>&1
+            psql -U $username -d $database -c "select * from a2.Query9Ans;" >>.table.expected 2>&1
         less .table.expected >> $results
         if [ -z `diff -q .table.your .table.expected` ]; then
-            echo "Mark:     5/5">>$results
+            echo "QUERY9 Mark:     5/5">>$results
         else
             #echo `diff .table.your .table.expected` >> $results
-            echo "Mark:     /5">>$results
+            echo "QUERY9 Mark:     /5">>$results
         fi
         rm -f .table.your .table.expected 
             echo "=============================================">>$results
@@ -349,19 +354,19 @@ do
         echo "         TESTING FOR QUERY10        ">>$results
         echo "-----------------------------------">>$results
         echo "******** YOUR RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query10;" >>.table.your 2>&1
+            psql -U $username -d $database -c "select * from a2.Query10 order by cname ASC;" >>.table.your 2>&1
         echo >>$results
         #trap handle7 ERR
         less .table.your >> $results
         echo >>$results
         echo "******** EXPECTED RESULT ********">>$results
-            psql -U $username -d $database -c "select * from Query10Ans;" >>.table.expected 2>&1
+            psql -U $username -d $database -c "select * from a2.Query10Ans order by cname ASC;" >>.table.expected 2>&1
         less .table.expected >> $results
         if [ -z `diff -q .table.your .table.expected` ]; then
-            echo "Mark:     5/5">>$results
+            echo "QUERY10 Mark:     5/5">>$results
         else
             #echo `diff .table.your .table.expected` >> $results
-            echo "Mark:     /5">>$results
+            echo "QUERY10 Mark:     /5">>$results
         fi
         rm -f .table.your .table.expected 
             echo "=============================================">>$results
@@ -413,3 +418,5 @@ do
     fi
 done
 echo $total
+echo $jdbcn
+echo $sqln

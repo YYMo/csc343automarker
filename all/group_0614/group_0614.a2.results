@@ -1,0 +1,350 @@
+********Test the SQL part of Assignment 2 for group_0614********
+
+*********Test existence of files**********
+
+Assignment2.java exists.
+a2.sql exists.
+
+********Run a2.sql*********
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY1        
+-----------------------------------
+******** YOUR RESULT ********
+ c1id | c1name | c2id | c2name 
+------+--------+------+--------
+(0 rows)
+
+
+******** EXPECTED RESULT ********
+ERROR:  relation "a2.query1ans" does not exist
+LINE 1: select * from a2.Query1Ans;
+                      ^
+QUERY1 Mark:     /5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY2        
+-----------------------------------
+******** YOUR RESULT ********
+
+ cid | cname 
+-----+-------
+(0 rows)
+
+
+******** EXPECTED RESULT ********
+ERROR:  relation "a2.query2ans" does not exist
+LINE 1: select * from a2.Query2Ans;
+                      ^
+QUERY2 Mark:     /5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY3        
+-----------------------------------
+******** YOUR RESULT ********
+
+ c1id | c1name | c2id | c2name 
+------+--------+------+--------
+(0 rows)
+
+
+******** EXPECTED RESULT ********
+ERROR:  relation "a2.query3ans" does not exist
+LINE 1: select * from a2.Query3Ans;
+                      ^
+QUERY3 Mark:     /5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY4        
+-----------------------------------
+******** YOUR RESULT ********
+
+ cname | oname 
+-------+-------
+(0 rows)
+
+
+******** EXPECTED RESULT ********
+ERROR:  relation "a2.query4ans" does not exist
+LINE 1: select * from a2.Query4Ans;
+                      ^
+QUERY4 Mark:     /5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY5        
+-----------------------------------
+******** YOUR RESULT ********
+
+ cid | cname | avghdi 
+-----+-------+--------
+(0 rows)
+
+
+******** EXPECTED RESULT ********
+ERROR:  relation "a2.query5ans" does not exist
+LINE 1: select * from a2.Query5Ans;
+                      ^
+QUERY5 Mark:     /5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY6        
+-----------------------------------
+******** YOUR RESULT ********
+
+ cid | cname 
+-----+-------
+(0 rows)
+
+
+******** EXPECTED RESULT ********
+ERROR:  relation "a2.query6ans" does not exist
+LINE 1: select * from a2.Query6Ans;
+                      ^
+QUERY6 Mark:     /5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY7        
+-----------------------------------
+******** YOUR RESULT ********
+
+ rid | rname | followers 
+-----+-------+-----------
+(0 rows)
+
+
+******** EXPECTED RESULT ********
+ERROR:  relation "a2.query7ans" does not exist
+LINE 1: select * from a2.Query7Ans;
+                      ^
+QUERY7 Mark:     /5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY8        
+-----------------------------------
+******** YOUR RESULT ********
+
+ c1name | c2name | lname 
+--------+--------+-------
+(0 rows)
+
+
+******** EXPECTED RESULT ********
+ERROR:  relation "a2.query8ans" does not exist
+LINE 1: select * from a2.Query8Ans;
+                      ^
+QUERY8 Mark:     /5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY9        
+-----------------------------------
+******** YOUR RESULT ********
+
+ cname | totalspan 
+-------+-----------
+(0 rows)
+
+
+******** EXPECTED RESULT ********
+ERROR:  relation "a2.query9ans" does not exist
+LINE 1: select * from a2.Query9Ans;
+                      ^
+QUERY9 Mark:     /5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY10        
+-----------------------------------
+******** YOUR RESULT ********
+
+ cname | borderslength 
+-------+---------------
+(0 rows)
+
+
+******** EXPECTED RESULT ********
+ERROR:  relation "a2.query10ans" does not exist
+LINE 1: select * from a2.Query10Ans order by cname ASC;
+                      ^
+QUERY10 Mark:     /5
+=============================================
+
+************Testing JDBC part ******************
+=============================================
+-----------------------------------
+Testing connectDB() method...
+-----------------------------------
+Connection to PostgreSQL 9.3.5 successful.
+
+Return Value: true
+Correct Value: true
+
+JDBC connectDB Mark: 5 /5
+=============================================
+
+-----------------------------------
+Testing insertCountry() method...
+-----------------------------------
+Inserting record (1, "Utopia", 4, 2)
+Executing this command: insert into a2.country (cid, cname, height, population) values (?, ?, ?, ?)
+
+Return Value: true
+Correct Value: true
+
+Inserting record (276, "FakeOne", 1, 1 )
+Return Value: false
+Correct Value: false
+
+Number of Insertions: 
+Return Value: 1
+Correct Value: 1
+
+JDBC insertCountry Mark: 5 /5
+=============================================
+
+-----------------------------------
+Testing getCountryNextToOceanCount() method...
+-----------------------------------
+Executing this command: select cid from a2.oceanAccess where oid = ?
+
+Return value: 1
+Correct Value: 5
+
+Getting # for non-existing country...
+Executing this command: select cid from a2.oceanAccess where oid = ?
+
+Return value: 0
+Correct Value: -1
+
+JDBC getCountriesNextToOceanCount Mark: 0 /5
+=============================================
+
+-----------------------------------
+Testing getOceanInfo() method...
+-----------------------------------
+Getting info for Ocean with pid = 3...
+Return value: 
+3:Indian:8047
+
+Correct Value: 
+3:Indian:8047
+
+Getting info for Ocean with cid = 10 ... (no such Ocean)
+Return value: true
+Correct Value: true
+
+JDBC getOceanInfo Mark: 5 /5
+=============================================
+
+-----------------------------------
+Testing deleteNeighbour() method...
+-----------------------------------
+Delete the neighbouring relations between Russia and Kanakhstan which is existed
+Return Value: true
+Correct Value: true
+
+Delete the neighbouring relations between Russia and USA which is not existed
+Return Value: false
+Correct Value: false
+
+JDBC deleteNeighbour mark: 5 /5
+=============================================
+
+-----------------------------------
+Testing listCountryLanguages() method...
+-----------------------------------
+Listing languages with cid = 356...
+Return Value: 
+6:Hindi:012:Bengali:013:Telugu:03:English:0
+
+Correct Value: 
+12:Bengali:12620000013:Telugu:883400003:English:126200006:Hindi:504800000
+
+SQL Exception in main(). <Message>: 1
+
+JDBC listCountryLanguages Mark: 0 /5
+=============================================
+
+-----------------------------------
+Testing chgHDI() method...
+-----------------------------------
+Change HDI with a legal value
+Return Value: true
+Correct Value: true
+Validate Value is correct in DB
+chgHDI(157, 2009, (float)0.5)
+Return Value: false
+Correct Value: false
+
+
+JDBC chgHDI Mark: 5 /5
+=============================================
+
+-----------------------------------
+Testing updateHeight() method...
+-----------------------------------
+Executing this command: update a2.country set height=? where cid=?
+
+Return Value: true
+Correct Value: true
+
+Verify the value in database
+Return values:10
+Correct Values: 4633
+
+JDBC updateHeight Mark: 2 /5
+=============================================
+
+-----------------------------------
+Testing updateDB() method...
+-----------------------------------
+Executing: create table if not exists mostPopulousCountries (cid int, cname varchar(20))
+Executing: select cid, cname from a2.country where population > 100000000
+Executing: insert into a2.mostPopulousCountries (cid, cname) values (?, ?)
+Querying mostPopulousCountries...
+Your response:
+cid: 156, cname:China
+
+Correct Response:
+cid: 76, cname:Brazil
+cid: 156, cname:China
+cid: 356, cname:India
+cid: 484, cname:Mexico
+cid: 643, cname:Russia
+cid: 840, cname:United States
+
+
+
+JDBC updateDB Mark: 0 /5
+=============================================
+
+-----------------------------------
+Testing disconnectDB() method...
+-----------------------------------
+Return Value: true
+Correct Values: true
+
+JDBC disconnectDB Mark: 5 /5
+=============================================
+
+JDBC Part Total Mark : 32 /50
+=============================================
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Part1 Total Mark :  0/50
+Part2 Total Mark :  32/50
+Total Mark       :  32/100
+<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+COMMENTS:
+Did not adhere to structure prescribed for part 1. Re-structure and apply for re-marking. Remove "create table" statements from the start.

@@ -67,47 +67,47 @@ class TestAssignment2
         else
             ta2.result[0] = ta2.TestconnectDB(args[0],args[1],"");
 
-        System.out.println("\nMark: " + ta2.getTestStatus(ta2.result[0], 5));
+        System.out.println("\nJDBC connectDB Mark: " + ta2.getTestStatus(ta2.result[0], 5));
         System.out.println("=============================================\n");
         sum += ta2.result[0];
         ta2.result[1] = ta2.TestinsertCountry();
-        System.out.println("\nMark: " + ta2.getTestStatus(ta2.result[1], 5));
+        System.out.println("\nJDBC insertCountry Mark: " + ta2.getTestStatus(ta2.result[1], 5));
         System.out.println("=============================================\n");
         sum += ta2.result[1];
         ta2.result[2] = ta2.TestgetCountriesNextToOceanCount();    
-        System.out.println("\nMark: " + ta2.getTestStatus(ta2.result[2], 5));
+        System.out.println("\nJDBC getCountriesNextToOceanCount Mark: " + ta2.getTestStatus(ta2.result[2], 5));
         System.out.println("=============================================\n");
         sum += ta2.result[2];
         ta2.result[3] = ta2.TestgetOceanInfo();      
-        System.out.println("\nMark: " + ta2.getTestStatus(ta2.result[3], 5));
+        System.out.println("\nJDBC getOceanInfo Mark: " + ta2.getTestStatus(ta2.result[3], 5));
         System.out.println("=============================================\n");
         sum += ta2.result[3];
         ta2.result[5] = ta2.TestdeleteNeighbour();      
-        System.out.println("\nMark: " + ta2.getTestStatus(ta2.result[5], 5));
+        System.out.println("\nJDBC deleteNeighbour mark: " + ta2.getTestStatus(ta2.result[5], 5));
         System.out.println("=============================================\n");
         sum += ta2.result[5];
         ta2.result[6] = ta2.TestlistCountryLanguages();        
-        System.out.println("\nMark: " + ta2.getTestStatus(ta2.result[6], 5));
+        System.out.println("\nJDBC listCountryLanguages Mark: " + ta2.getTestStatus(ta2.result[6], 5));
         System.out.println("=============================================\n");
         sum += ta2.result[6];
         ta2.result[4] = ta2.TestchgHDI(); // affects listcourses
-        System.out.println("\nMark: " + ta2.getTestStatus(ta2.result[4], 5));
+        System.out.println("\nJDBC chgHDI Mark: " + ta2.getTestStatus(ta2.result[4], 5));
         System.out.println("=============================================\n");
         sum += ta2.result[4];
         ta2.result[7] = ta2.TestupdateHeight();       
-        System.out.println("\nMark: " + ta2.getTestStatus(ta2.result[7], 5));
+        System.out.println("\nJDBC updateHeight Mark: " + ta2.getTestStatus(ta2.result[7], 5));
         System.out.println("=============================================\n");
         sum += ta2.result[7];
         ta2.result[8] = ta2.TestupdateDB(); //run ammendgrades as the last test     
-        System.out.println("\nMark: " + ta2.getTestStatus(ta2.result[8], 5));
+        System.out.println("\nJDBC updateDB Mark: " + ta2.getTestStatus(ta2.result[8], 5));
         System.out.println("=============================================\n");
         sum += ta2.result[8];
         ta2.result[9] = ta2.TestdisconnectDB();
-        System.out.println("\nMark: " + ta2.getTestStatus(ta2.result[9], 5));
+        System.out.println("\nJDBC disconnectDB Mark: " + ta2.getTestStatus(ta2.result[9], 5));
         System.out.println("=============================================\n");
         sum += ta2.result[9];        
         
-        String part2 = "Part2 Total Mark : " + sum +"/50";
+        String part2 = "JDBC Part Total Mark : " + sum +" /50";
         System.out.println(part2);
         System.out.println("=============================================\n");
 
@@ -161,7 +161,7 @@ class TestAssignment2
 
             // verify total no of rows and newly inserted from department table
             stmt = conn.createStatement();
-            queryString = "select count(*) from country";
+            queryString = "select count(*) from a2.country";
             rs = stmt.executeQuery(queryString);
 
             if ( rs.next() )
@@ -173,11 +173,11 @@ class TestAssignment2
             System.out.println("Return Value: " + success1);
             System.out.println("Correct Value: " + true);
             System.out.println();
-            if (success1) case_marks+=2;
+            if (success1) case_marks+=3;
             
             // insert a country with invalid fields...
-            System.out.println("Inserting record (888, \"ErrorCountry\", -1, -1 )");
-            boolean success2 = a2.insertCountry(888, "ErrorCountry", -1, -1);
+            System.out.println("Inserting record (276, \"FakeOne\", 1, 1 )");
+            boolean success2 = a2.insertCountry(276, "FakeOne", 1, 1);
             System.out.println("Return Value: " + success2);
             System.out.println("Correct Value: " + false);
             System.out.println();
@@ -190,7 +190,7 @@ class TestAssignment2
 
             // verify total no of rows and newly inserted from department table
             stmt = conn.createStatement();
-            queryString = "select count(*) from country";
+            queryString = "select count(*) from a2.country";
             rs = stmt.executeQuery(queryString);
 
             if ( rs.next() ) {
@@ -200,9 +200,6 @@ class TestAssignment2
                 System.out.println("Correct Value: " + 1);
 
                 if (new_stud_count - stud_count == 1) case_marks++;
-            }
-            if ( success1 == true && success2 == false && new_stud_count - stud_count == 1){
-                case_marks++;
             }
         }
         catch (SQLException se)
@@ -223,7 +220,7 @@ class TestAssignment2
             
             int correct_count = 0;
             //Canada
-            int count1 = a2.getCountriesNextToOceanCount(124);
+            int count1 = a2.getCountriesNextToOceanCount(1);
             System.out.println("Return value: " + count1);
             // verify from database directly
             Statement stmt = null;
@@ -232,7 +229,7 @@ class TestAssignment2
 
             // verify total no of rows and newly inserted from department table
             stmt = conn.createStatement();
-            queryString = "select count(*) from oceanAccess where cid = 124";
+            queryString = "select count(*) from a2.oceanAccess where oid = 1";
             rs = stmt.executeQuery(queryString);
 
             if ( rs.next() )
@@ -334,13 +331,13 @@ class TestAssignment2
 
             // verify total no of rows from countries table
             stmt = conn.createStatement();
-            queryString = "select count(*) from neighbour where country=398";
+            queryString = "select count(*) from a2.neighbour where country=398";
             rs = stmt.executeQuery(queryString);
 
             if ( rs.next() )
                 KZ_count = rs.getInt(1);
 
-            queryString = "select count(*) from neighbour where country=643";
+            queryString = "select count(*) from a2.neighbour where country=643";
             rs = stmt.executeQuery(queryString);
 
             if ( rs.next() )
@@ -376,25 +373,24 @@ class TestAssignment2
 
         Statement stmt = null;
         ResultSet rs = null;
-        int cid = 0;
-        String queryString = "select year from hdi where cid = 156 and hdi_score=0.5";
+        int y = 0;
+        String queryString = "select year from a2.hdi where cid = 156 and hdi_score=0.5";
         stmt = conn.createStatement();
         rs = stmt.executeQuery(queryString);
 
         if ( rs.next() )
-            cid = rs.getInt(1);
-        
-        if (retval && cid == 156){
-            case_marks += 3;
+            y= rs.getInt(1);
+        if(retval){
+            case_marks += 1;
         }
 
-        System.out.println();
-        System.out.println("Change HDI with illegal values");
-        System.out.println("chgHDI(156, 2009, (float)1.1)");
-        boolean retval2 = a2.chgHDI(156, 2009, (float)1.1);
-        System.out.println("Return Value: " + retval2);
-        System.out.println("Correct Value: " + false);
-        System.out.println();
+        if (y == 2009){
+            System.out.println("Validate Value is correct in DB");
+            case_marks += 3;
+        }
+        else{
+            System.out.println("Validate Value is not correct in DB");
+        }
 
         System.out.println("chgHDI(157, 2009, (float)0.5)");
         boolean retval3 = a2.chgHDI(157, 2009, (float)0.5);
@@ -402,14 +398,9 @@ class TestAssignment2
         System.out.println("Correct Value: " + false);
         System.out.println();
 
-        System.out.println("chgHDI(156, 2008, (float)0.5)");
-        boolean retval4 = a2.chgHDI(156, 2008, (float)0.5);
-        System.out.println("Return Value: " + retval4);
-        System.out.println("Correct Value: " + false);
-        System.out.println();
 
-        if(!retval2 && !retval3 && !retval4){
-            case_marks += 2;
+        if(!retval3){
+            case_marks += 1;
         }
 
         }catch(SQLException se)
@@ -455,14 +446,24 @@ class TestAssignment2
             System.out.println("\n");
 
             boolean matchup = true;
-            if (vec.length == temp.length)
+            if (vec.length == temp.length){
                 case_marks += 1;
+                if(temp[0].indexOf("6:Hindi") != -1
+                    && temp[1].indexOf("12:Bengali") != -1
+                    && temp[2].indexOf("13:Telugu") != -1
+                    && temp[3].indexOf("3:English") != -1){
+
+                }{
+                    case_marks += 3;
+                }
+            }
+
             for (int i = 0; i < vec.length; i++) {
                 if (!vec[i].equals(temp[i]))
                   matchup = false;
             }
             if (matchup)
-              case_marks += 3;
+              case_marks += 0;
             
             System.out.println("Listing languages with cid = 10...(which does not exist)");
             String info2 = a2.listCountryLanguages(10);
@@ -513,7 +514,7 @@ class TestAssignment2
         
         // verify total no of rows and newly inserted from department table
         stmt = conn.createStatement();
-        queryString = "select height from country where cid = 860";
+        queryString = "select height from a2.country where cid = 860";
         rs = stmt.executeQuery(queryString);
         
         if ( rs.next() )
@@ -524,8 +525,8 @@ class TestAssignment2
 
         if(height == 4633)
             case_marks += 3;
-
         }
+
         catch (SQLException se)
         {
             System.err.println("SQL Exception in main(). " +
@@ -555,7 +556,7 @@ class TestAssignment2
             // verify total no of rows and newly inserted from department table
             System.out.println("Querying mostPopulousCountries...");
             stmt = conn.createStatement();
-            queryString = "select * from mostPopulousCountries order by cid ASC";
+            queryString = "select * from a2.mostPopulousCountries order by cid ASC";
             rs = stmt.executeQuery(queryString);
 
             int cmid = -1;
@@ -599,7 +600,18 @@ class TestAssignment2
         System.out.println("-----------------------------------");
         System.out.println("Testing disconnectDB() method...");
         System.out.println("-----------------------------------");
+        
         boolean success = a2.disconnectDB();
+        /*
+        boolean success = false;
+                try{
+            success = a2.disconnectDB();
+        }catch(SQLException se)
+        {
+            System.err.println("SQL Exception in main(). " +
+                "<Message>: " + se.getMessage());
+        }
+        */
         System.out.println("Return Value: " + success);
         System.out.println("Correct Values: " + true);
         
@@ -612,6 +624,6 @@ class TestAssignment2
 
     String getTestStatus(int val, int tot)
     {
-            return "" + val + "/" + tot;
+            return "" + val + " /" + tot;
     }   
 }   

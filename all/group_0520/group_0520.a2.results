@@ -1,0 +1,558 @@
+********Test the SQL part of Assignment 2 for group_0520********
+
+*********Test existence of files**********
+
+Assignment2.java exists.
+a2.sql exists.
+
+********Run a2.sql*********
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY1        
+-----------------------------------
+******** YOUR RESULT ********
+ c1id |    c1name     | c2id |    c2name     
+------+---------------+------+---------------
+   68 | Bolivia       |   76 | Brazil
+   76 | Brazil        |   68 | Bolivia
+  124 | Canada        |  840 | United States
+  156 | China         |  356 | India
+  250 | France        |  276 | Germany
+  276 | Germany       |  250 | France
+  356 | India         |  156 | China
+  398 | Kazakhstan    |  156 | China
+  484 | Mexico        |  840 | United States
+  496 | Mongolia      |  156 | China
+  643 | Russia        |  156 | China
+  840 | United States |  124 | Canada
+  860 | Uzbekistan    |  398 | Kazakhstan
+(13 rows)
+
+
+******** EXPECTED RESULT ********
+ c1id |    c1name     | c2id |    c2name     
+------+---------------+------+---------------
+   68 | Bolivia       |   76 | Brazil
+   76 | Brazil        |   68 | Bolivia
+  124 | Canada        |  840 | United States
+  156 | China         |  356 | India
+  250 | France        |  276 | Germany
+  276 | Germany       |  250 | France
+  356 | India         |  156 | China
+  398 | Kazakhstan    |  156 | China
+  484 | Mexico        |  840 | United States
+  496 | Mongolia      |  156 | China
+  643 | Russia        |  156 | China
+  840 | United States |  124 | Canada
+  860 | Uzbekistan    |  398 | Kazakhstan
+(13 rows)
+
+QUERY1 Mark:     5/5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY2        
+-----------------------------------
+******** YOUR RESULT ********
+
+ cid |   cname    
+-----+------------
+  68 | Bolivia
+ 398 | Kazakhstan
+ 496 | Mongolia
+ 860 | Uzbekistan
+(4 rows)
+
+
+******** EXPECTED RESULT ********
+ cid |   cname    
+-----+------------
+  68 | Bolivia
+ 398 | Kazakhstan
+ 496 | Mongolia
+ 860 | Uzbekistan
+(4 rows)
+
+QUERY2 Mark:     5/5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY3        
+-----------------------------------
+******** YOUR RESULT ********
+
+ c1id |   c1name   | c2id |   c2name   
+------+------------+------+------------
+   68 | Bolivia    |   76 | Brazil
+  496 | Mongolia   |  156 | China
+  860 | Uzbekistan |  398 | Kazakhstan
+(3 rows)
+
+
+******** EXPECTED RESULT ********
+ c1id |   c1name   | c2id |   c2name   
+------+------------+------+------------
+   68 | Bolivia    |   76 | Brazil
+  496 | Mongolia   |  156 | China
+  860 | Uzbekistan |  398 | Kazakhstan
+(3 rows)
+
+QUERY3 Mark:     5/5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY4        
+-----------------------------------
+******** YOUR RESULT ********
+
+     cname     |  oname   
+---------------+----------
+ Bolivia       | Atlantic
+ Brazil        | Atlantic
+ Canada        | Pacific
+ Canada        | Atlantic
+ Canada        | Aritic
+ China         | Pacific
+ China         | Indian
+ China         | Aritic
+ France        | Atlantic
+ Germany       | Atlantic
+ India         | Pacific
+ India         | Indian
+ Kazakhstan    | Pacific
+ Kazakhstan    | Aritic
+ Mexico        | Pacific
+ Mexico        | Atlantic
+ Mongolia      | Pacific
+ Russia        | Pacific
+ Russia        | Aritic
+ United States | Pacific
+ United States | Atlantic
+ United States | Aritic
+(22 rows)
+
+
+******** EXPECTED RESULT ********
+     cname     |  oname   
+---------------+----------
+ Bolivia       | Atlantic
+ Brazil        | Atlantic
+ Canada        | Pacific
+ Canada        | Atlantic
+ Canada        | Aritic
+ China         | Pacific
+ China         | Indian
+ China         | Aritic
+ France        | Atlantic
+ Germany       | Atlantic
+ India         | Pacific
+ India         | Indian
+ Kazakhstan    | Pacific
+ Kazakhstan    | Aritic
+ Mexico        | Pacific
+ Mexico        | Atlantic
+ Mongolia      | Pacific
+ Russia        | Pacific
+ Russia        | Aritic
+ United States | Pacific
+ United States | Atlantic
+ United States | Aritic
+(22 rows)
+
+QUERY4 Mark:     5/5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY5        
+-----------------------------------
+******** YOUR RESULT ********
+
+ cid |     cname     | avghdi 
+-----+---------------+--------
+ 840 | United States |   0.91
+ 276 | Germany       | 0.9072
+ 124 | Canada        |  0.899
+ 250 | France        | 0.8808
+ 643 | Russia        | 0.7746
+ 398 | Kazakhstan    | 0.7506
+ 484 | Mexico        |   0.75
+  76 | Brazil        | 0.7394
+ 156 | China         | 0.7054
+  68 | Bolivia       | 0.6596
+(10 rows)
+
+
+******** EXPECTED RESULT ********
+ cid |     cname     | avghdi 
+-----+---------------+--------
+ 840 | United States |   0.91
+ 276 | Germany       | 0.9072
+ 124 | Canada        |  0.899
+ 250 | France        | 0.8808
+ 643 | Russia        | 0.7746
+ 398 | Kazakhstan    | 0.7506
+ 484 | Mexico        |   0.75
+  76 | Brazil        | 0.7394
+ 156 | China         | 0.7054
+  68 | Bolivia       | 0.6596
+(10 rows)
+
+QUERY5 Mark:     5/5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY6        
+-----------------------------------
+******** YOUR RESULT ********
+
+ cid |     cname     
+-----+---------------
+  68 | Bolivia
+  68 | Bolivia
+  68 | Bolivia
+  68 | Bolivia
+  68 | Bolivia
+  76 | Brazil
+  76 | Brazil
+  76 | Brazil
+  76 | Brazil
+  76 | Brazil
+ 156 | China
+ 156 | China
+ 156 | China
+ 156 | China
+ 156 | China
+ 356 | India
+ 356 | India
+ 356 | India
+ 356 | India
+ 356 | India
+ 398 | Kazakhstan
+ 398 | Kazakhstan
+ 398 | Kazakhstan
+ 398 | Kazakhstan
+ 398 | Kazakhstan
+ 484 | Mexico
+ 484 | Mexico
+ 484 | Mexico
+ 484 | Mexico
+ 484 | Mexico
+ 643 | Russia
+ 643 | Russia
+ 643 | Russia
+ 643 | Russia
+ 643 | Russia
+ 840 | United States
+ 840 | United States
+ 840 | United States
+ 840 | United States
+ 840 | United States
+ 860 | Uzbekistan
+ 860 | Uzbekistan
+ 860 | Uzbekistan
+ 860 | Uzbekistan
+ 860 | Uzbekistan
+(45 rows)
+
+
+******** EXPECTED RESULT ********
+ cid |     cname     
+-----+---------------
+  68 | Bolivia
+  76 | Brazil
+ 156 | China
+ 356 | India
+ 398 | Kazakhstan
+ 484 | Mexico
+ 643 | Russia
+ 840 | United States
+ 860 | Uzbekistan
+(9 rows)
+
+QUERY6 Mark:     2/5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY7        
+-----------------------------------
+******** YOUR RESULT ********
+
+ rid |    rname     | followers 
+-----+--------------+-----------
+   5 | Hindu        |   9969800
+   4 | Christian    |   7807636
+   1 | Unaffiliated |   6780457
+   3 | Buddhist     |   2363477
+   2 | Muslim       |    586956
+(5 rows)
+
+
+******** EXPECTED RESULT ********
+ rid |    rname     | followers 
+-----+--------------+-----------
+   5 | Hindu        | 996980027
+   4 | Christian    | 780763636
+   1 | Unaffiliated | 678045655
+   3 | Buddhist     | 236347687
+   2 | Muslim       |  58695610
+(5 rows)
+
+QUERY7 Mark:     4/5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY8        
+-----------------------------------
+******** YOUR RESULT ********
+
+    c1name     |    c2name     |  lname  
+---------------+---------------+---------
+ United States | Canada        | English
+ Canada        | United States | English
+ Russia        | Kazakhstan    | Russian
+ Kazakhstan    | Russia        | Russian
+(4 rows)
+
+
+******** EXPECTED RESULT ********
+    c1name     |    c2name     |  lname  
+---------------+---------------+---------
+ United States | Canada        | English
+ Canada        | United States | English
+ Russia        | Kazakhstan    | Russian
+ Kazakhstan    | Russia        | Russian
+(4 rows)
+
+QUERY8 Mark:     5/5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY9        
+-----------------------------------
+******** YOUR RESULT ********
+
+     cname     | totalspan 
+---------------+-----------
+ Canada        |     16870
+ Brazil        |     11374
+ Mongolia      |      4374
+ Mexico        |     16547
+ Russia        |     16553
+ Kazakhstan    |      7010
+ Bolivia       |      6542
+ Germany       |     11342
+ China         |     19761
+ Uzbekistan    |      4643
+ India         |     16633
+ France        |     13188
+ United States |     17178
+(13 rows)
+
+
+******** EXPECTED RESULT ********
+ cname | totalspan 
+-------+-----------
+ China |     19761
+(1 row)
+
+QUERY9 Mark:     2/5
+=============================================
+
+-----------------------------------
+         TESTING FOR QUERY10        
+-----------------------------------
+******** YOUR RESULT ********
+
+     cname     | borderslength 
+---------------+---------------
+ Bolivia       |          3400
+ Brazil        |          3400
+ Canada        |          8893
+ China         |         13516
+ France        |         13516
+ Germany       |         13516
+ India         |          3380
+ Kazakhstan    |          8673
+ Mexico        |          3141
+ Mongolia      |          4709
+ Russia        |         10491
+ United States |         12034
+ Uzbekistan    |            45
+(13 rows)
+
+
+******** EXPECTED RESULT ********
+  cname  | borderslength 
+---------+---------------
+ China   |         13516
+ France  |         13516
+ Germany |         13516
+(3 rows)
+
+QUERY10 Mark:     2/5
+=============================================
+
+************Testing JDBC part ******************
+=============================================
+-----------------------------------
+Testing connectDB() method...
+-----------------------------------
+Return Value: true
+Correct Value: true
+
+JDBC connectDB Mark: 5 /5
+=============================================
+
+-----------------------------------
+Testing insertCountry() method...
+-----------------------------------
+Inserting record (1, "Utopia", 4, 2)
+Return Value: true
+Correct Value: true
+
+Inserting record (276, "FakeOne", 1, 1 )
+Return Value: false
+Correct Value: false
+
+Number of Insertions: 
+Return Value: 1
+Correct Value: 1
+
+JDBC insertCountry Mark: 5 /5
+=============================================
+
+-----------------------------------
+Testing getCountryNextToOceanCount() method...
+-----------------------------------
+Return value: 5
+Correct Value: 5
+
+Getting # for non-existing country...
+Return value: 0
+Correct Value: -1
+
+JDBC getCountriesNextToOceanCount Mark: 3 /5
+=============================================
+
+-----------------------------------
+Testing getOceanInfo() method...
+-----------------------------------
+Getting info for Ocean with pid = 3...
+Return value: 
+3:Indian:8047
+
+Correct Value: 
+3:Indian:8047
+
+Getting info for Ocean with cid = 10 ... (no such Ocean)
+Return value: true
+Correct Value: true
+
+JDBC getOceanInfo Mark: 5 /5
+=============================================
+
+-----------------------------------
+Testing deleteNeighbour() method...
+-----------------------------------
+Delete the neighbouring relations between Russia and Kanakhstan which is existed
+Return Value: true
+Correct Value: true
+
+Delete the neighbouring relations between Russia and USA which is not existed
+Return Value: true
+Correct Value: false
+
+JDBC deleteNeighbour mark: 2 /5
+=============================================
+
+-----------------------------------
+Testing listCountryLanguages() method...
+-----------------------------------
+Listing languages with cid = 356...
+Return Value: 
+12:Bengali:1262000.013:Telugu:883399.943:English:126200.06:Hindi:5048000.0
+
+Correct Value: 
+12:Bengali:12620000013:Telugu:883400003:English:126200006:Hindi:504800000
+
+Listing languages with cid = 10...(which does not exist)
+SQL Exception in main(). <Message>: String index out of range: -1
+
+JDBC listCountryLanguages Mark: 4 /5
+=============================================
+
+-----------------------------------
+Testing chgHDI() method...
+-----------------------------------
+Change HDI with a legal value
+Return Value: true
+Correct Value: true
+Validate Value is correct in DB
+chgHDI(157, 2009, (float)0.5)
+Return Value: true
+Correct Value: false
+
+
+JDBC chgHDI Mark: 4 /5
+=============================================
+
+-----------------------------------
+Testing updateHeight() method...
+-----------------------------------
+Return Value: true
+Correct Value: true
+
+Verify the value in database
+Return values:4633
+Correct Values: 4633
+
+JDBC updateHeight Mark: 5 /5
+=============================================
+
+-----------------------------------
+Testing updateDB() method...
+-----------------------------------
+Querying mostPopulousCountries...
+Your response:
+cid: 76, cname:Brazil
+cid: 156, cname:China
+cid: 356, cname:India
+cid: 484, cname:Mexico
+cid: 643, cname:Russia
+cid: 840, cname:United States
+
+Correct Response:
+cid: 76, cname:Brazil
+cid: 156, cname:China
+cid: 356, cname:India
+cid: 484, cname:Mexico
+cid: 643, cname:Russia
+cid: 840, cname:United States
+
+
+
+JDBC updateDB Mark: 5 /5
+=============================================
+
+-----------------------------------
+Testing disconnectDB() method...
+-----------------------------------
+Return Value: true
+Correct Values: true
+
+JDBC disconnectDB Mark: 5 /5
+=============================================
+
+JDBC Part Total Mark : 43 /50
+=============================================
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Part1 Total Mark :  40/50
+Part2 Total Mark :  43/50
+Total Mark       :  83/100
+<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+COMMENTS:

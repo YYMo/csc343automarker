@@ -1,0 +1,27 @@
+Totoal Results: 210
+Has a2.sql: 205
+Has Assignment2.java: 200
+Can be compiled JAVA files: 174
+Run without termination: 155
+# of 5 in QUERY1: 163/205 79.5122%
+# of 5 in QUERY2: 177/205 86.3415%
+# of 5 in QUERY3: 145/205 70.7317%
+# of 5 in QUERY4: 142/205 69.2683%
+# of 5 in QUERY5: 163/205 79.5122%
+# of 5 in QUERY6: 133/205 64.878%
+# of 5 in QUERY7: 125/205 60.9756%
+# of 5 in QUERY8: 119/205 58.0488%
+# of 5 in QUERY9: 128/205 62.439%
+# of 5 in QUERY10: 102/205 49.7561%
+JDBC Part(successfully runned) Avg:  40.1226
+Function name: Avg/# of 5/runnable:
+JDBC connectDB Mark:  4.42529/154/174
+JDBC insertCountry Mark:  4.3913/133/161
+JDBC getCountriesNextToOceanCount Mark:  3.18634/29/161
+JDBC getOceanInfo Mark:  4.55901/136/161
+JDBC deleteNeighbour mark:  3.2/64/160
+JDBC listCountryLanguages Mark:  3.71875/103/160
+JDBC chgHDI Mark:  4.2/86/160
+JDBC updateHeight Mark:  3.89375/115/160
+JDBC updateDB Mark:  3.3038/93/158
+JDBC disconnectDB Mark:  4.80645/149/155

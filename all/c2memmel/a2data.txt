@@ -1,0 +1,92 @@
+insert into country values (1, 'A', 1, 100);
+insert into country values (2, 'B', 2, 200);
+insert into country values (3, 'C', 3, 300);
+insert into country values (4, 'D', 4, 400);
+insert into country values (5, 'E', 5, 500);
+
+
+insert into language values ( 1, 1, 'English', 50 );
+insert into language values ( 1, 2, 'French', 50 );
+
+insert into language values ( 2, 1, 'English', 20 );
+insert into language values ( 2, 2, 'French', 40 );
+insert into language values ( 2, 3, 'Spanish', 40 );
+
+insert into language values ( 3, 1, 'English', 10 );
+insert into language values ( 3, 3, 'Spanish', 60 );
+insert into language values ( 3, 4, 'Chinese', 30 );
+
+insert into language values ( 4, 2, 'English', 30 );
+insert into language values ( 4, 3, 'Spanish', 20 );
+insert into language values ( 4, 4, 'Chinese', 50 );
+
+insert into language values ( 5, 3, 'Spanish', 30 );
+insert into language values ( 5, 4, 'Chinese', 70 );
+
+
+insert into religion values (1, 1, 'Christian', 70);
+insert into religion values (1, 2, 'Budist', 30);
+
+insert into religion values (2, 1, 'Christian', 20);
+insert into religion values (2, 3, 'Muslim', 70);
+insert into religion values (2, 2, 'Budist', 10);
+
+insert into religion values (3, 3, 'Muslim', 20);
+insert into religion values (3, 5, 'Jewish', 80);
+
+insert into religion values (4, 1, 'Christian', 40);
+insert into religion values (4, 3, 'Muslim', 40);
+insert into religion values (4, 5, 'Jewish', 20);
+
+
+insert into ocean values (1, 'Atlantic', 50);
+insert into ocean values (2, 'Pacific', 100);
+insert into ocean values (3, 'Arctic', 200);
+
+insert into neighbour values (1, 2, 100);
+insert into neighbour values (2, 1, 100);
+insert into neighbour values (1, 3, 100);
+insert into neighbour values (3, 1, 100);
+insert into neighbour values (3, 4, 100);
+insert into neighbour values (4, 3, 100);
+insert into neighbour values (3, 2, 100);
+insert into neighbour values (2, 3, 100);
+
+insert into oceanAccess values (1, 1);
+insert into oceanAccess values (1, 2);
+insert into oceanAccess values (1, 3);
+insert into oceanAccess values (2, 2);
+insert into oceanAccess values (3, 3);
+
+insert into hdi values (1, 2009, 1);
+insert into hdi values (1, 2010, 2);
+insert into hdi values (1, 2011, 3);
+insert into hdi values (1, 2012, 4);
+insert into hdi values (1, 2013, 5);
+insert into hdi values (1, 2014, 6);
+insert into hdi values (1, 2015, 7);
+
+insert into hdi values (2, 2009, 1);
+insert into hdi values (2, 2010, 1);
+insert into hdi values (2, 2011, 3);
+insert into hdi values (2, 2012, 4);
+insert into hdi values (2, 2013, 5);
+insert into hdi values (2, 2014, 6);
+insert into hdi values (2, 2015, 7);
+
+insert into hdi values (3, 2009, 1);
+insert into hdi values (3, 2010, 2);
+insert into hdi values (3, 2011, 1);
+insert into hdi values (3, 2012, 4);
+insert into hdi values (3, 2013, 5);
+insert into hdi values (3, 2014, 6);
+insert into hdi values (3, 2015, 7);
+
+insert into hdi values (4, 2009, 1);
+insert into hdi values (4, 2010, 2);
+insert into hdi values (4, 2011, 3);
+
+insert into hdi values (5, 2009, 1);
+insert into hdi values (5, 2010, 2);
+insert into hdi values (5, 2011, 3);
+insert into hdi values (5, 2012, 2);

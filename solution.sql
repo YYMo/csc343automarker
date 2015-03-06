@@ -4,19 +4,16 @@
 -- You can use the "\i a2.sql" command in psql to execute the SQL commands in this file.
 
 -- Query 1 statements
-CREATE VIEW countryNeighbourMaxHeight AS
-SELECT c1.cid c1id, c1.cname c1name, c2.cid c2id, c2.cname c2name, MAX(c2.height)
-FROM country c1, country c2, neighbour n 
-WHERE c1.cid = n.country AND c2.cid = n.neighbor
-GROUP BY c1id, c1name, c2id, c2name;
+SET search_path TO A2;
 
 INSERT INTO query1ans
-SELECT c1id, c1name, c2id, c2name
-FROM countryNeighbourMaxHeight
+SELECT c1.cid c1id, c1.cname c1name, c2.cid c2id, c2.cname c2name
+FROM country c1, country c2, neighbour n 
+WHERE c1.cid = n.country AND c2.cid = n.neighbor 
+  AND c2.height >= ALL(SELECT c3.height c3height
+            FROM country c3, neighbour n2 
+            WHERE c1.cid = n2.country AND c3.cid = n2.neighbor)
 ORDER BY c1name ASC;
-
-DROP VIEW countryNeighbourMaxHeight;
-
 
 -- Query 2 statements
 INSERT INTO query2ans
